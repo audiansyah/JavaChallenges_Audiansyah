@@ -13,4 +13,10 @@ public interface IEmployee {
 
     void generateSalary(List<Employee> employees);
 
+    void generateTax(List<Employee> employees);
+
+//    void displayEmployees(List<Programmer> employees);
+//
+//    void generateSalary(List<Programmer> employees);
+
 }

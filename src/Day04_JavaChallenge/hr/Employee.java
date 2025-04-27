@@ -13,8 +13,7 @@ public class Employee  {
     private Roles role;
     private double salary;
     private double totalSalary;
-
-
+    private double totalTax;
 
     public Employee(int empId, String fullName, LocalDate hireDate, Roles role, double salary) {
         this.empId = empId;
@@ -28,6 +27,9 @@ public class Employee  {
         this.totalSalary = this.salary;
     }
 
+    public void calculateTax(){this.totalTax = totalTax;}
+
+
     @Override
     public String toString() {
         return "Employee{" +
@@ -36,8 +38,17 @@ public class Employee  {
                 ", hireDate=" + hireDate +
                 ", role=" + role +
                 ", salary=" + salary +
-                ", Total Salary=" + totalSalary +
+                ", totalSalary=" + totalSalary +
+                ", totalTax=" + totalTax +
                 '}';
+    }
+
+    public double getTotalTax() {
+        return totalTax;
+    }
+
+    public void setTotalTax(double totalTax) {
+        this.totalTax = totalTax;
     }
 
     public int getEmpId() {

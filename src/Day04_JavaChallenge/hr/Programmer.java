@@ -21,6 +21,11 @@ public class Programmer extends  Employee implements ISalary {
 
     @Override
     public void calculateTotalSalary() {
-        setTotalSalary(getSalary()+ transport.getBensin()+ transport.getSpj()+ transport.getTransportasi()+ makan.getMakan());
+        setTotalSalary((getSalary()+ transport.getBensin()+ transport.getSpj()+ transport.getTransportasi()+ makan.getMakan())- getTotalTax());
+    }
+
+    @Override
+    public void calculateTax() {
+        setTotalTax(getSalary() * 0.01);
     }
 }

@@ -22,6 +22,11 @@ public class Sales extends Employee implements ISalary {
 
     @Override
     public void calculateTotalSalary() {
-        setTotalSalary(getSalary()+ commision.getComision()+ commision.getBonus()+ makan.getMakan());
+        setTotalSalary((getSalary()+ commision.getComision()+ commision.getBonus()+ makan.getMakan())- getTotalTax());
+    }
+
+    @Override
+    public void calculateTax() {
+        setTotalTax(getSalary() * 0.01);
     }
 }

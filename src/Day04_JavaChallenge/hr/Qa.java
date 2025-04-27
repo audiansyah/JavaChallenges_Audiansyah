@@ -16,6 +16,11 @@ public class Qa extends Employee implements ISalary {
 
     @Override
     public void calculateTotalSalary() {
-        setTotalSalary(getSalary()+ makan.getMakan());
+        setTotalSalary((getSalary()+ makan.getMakan())- getTotalTax());
+    }
+
+    @Override
+    public void calculateTax() {
+        setTotalTax(getSalary() * 0.01);
     }
 }

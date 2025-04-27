@@ -59,4 +59,26 @@ public class EmployeeImpl implements IEmployee{
             emp.calculateTotalSalary();
         }
     }
+
+    @Override
+    public void generateTax(List<Employee> employees) {
+        for (Employee emp : employees){
+            emp.calculateTax();
+        }
+    }
+
+//    @Override
+//    public void displayEmployees(List<Programmer> employees) {
+//        for(Employee emp : employees){
+//
+//            System.out.println(emp.toString());
+//        }
+//    }
+//
+//    @Override
+//    public void generateSalary(List<Programmer> employees) {
+//        for (Programmer emp : employees){
+//            emp.calculateTotalSalary();
+//        }
+//    }
 }
