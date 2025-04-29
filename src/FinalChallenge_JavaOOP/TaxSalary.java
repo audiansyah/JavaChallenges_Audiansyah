@@ -6,28 +6,28 @@ import FinalChallenge_JavaOOP.allowance.Allowance;
 import java.time.LocalDate;
 
 public class TaxSalary extends Allowance {
-    private double PPH;
-    private double Tapera;
+    private double pph;
+    private double tapera;
 
-    public TaxSalary(LocalDate totalAllowance, double PPH, double tapera) {
+    public TaxSalary(LocalDate totalAllowance, double pph, double tapera) {
         super(totalAllowance);
-        this.PPH = PPH;
-        Tapera = tapera;
+        this.pph = pph;
+        this.tapera = tapera;
     }
 
-    public double getPPH() {
-        return PPH;
+    public double getPph() {
+        return pph;
     }
 
-    public void setPPH(double PPH) {
-        this.PPH = PPH;
+    public void setPph(double pph) {
+        this.pph = pph;
     }
 
     public double getTapera() {
-        return Tapera;
+        return tapera;
     }
 
     public void setTapera(double tapera) {
-        Tapera = tapera;
+        this.tapera = tapera;
     }
 }

@@ -72,7 +72,7 @@ public class Contract extends Employee implements AllowanceService {
 
     @Override
     public void calculateTax() {
-        setTotalTax(getSalary() * (taxSalary.getPPH() + taxSalary.getTapera()) / 100);
+        setTotalTax(getSalary() * (taxSalary.getPph() + taxSalary.getTapera()) / 100);
     }
 
     @Override
