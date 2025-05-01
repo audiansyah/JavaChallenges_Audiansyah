@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table Region</title>
+</head>
+<body>
+    <h3>Region Form</h3>
+
+    <!-- form tambah dan edit -->
+    <form th:action="@{${region.regionId} != null ? '/regions/update/' + ${region.regionId} : '/regions/create'}"
+	method="post" th:object="${region}">
+
+        <!-- hidden field untuk edit -->
+        <input type="hidden" th:field="*{regionId}" />
+
+        <label for="regionName">Region Name:</label>
+        <input type="text" id="regionName" th:field="*{regionName}" required maxlength="25" />
+        <button type="submit" th:text="${region.regionId} != null ? 'Update' : 'Add'"></button>
+    </form>
+
+    <hr/>
+
+    <h3>Table Region</h3>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Region Id</th>
+                <th>Region Name</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="region : ${regions}">
+                <td th:text="${region.regionId}"></td>
+                <td th:text="${region.regionName}"></td>
+                <td>
+                    <a th:href="@{'/regions/edit/' + ${region.regionId}}">Edit</a> |
+                    <a th:href="@{'/regions/delete/' + ${region.regionId}}"
+					onclick="return confirm('Yakin ingin hapus region ini?')">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
