@@ -1,0 +1,45 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+xmlns:with="http://www.thymeleaf.org/extras/with" layout:decorate="~{main_layout}" with:title="index">
+<th:block layout:fragment="content">
+
+
+<div class="container-fluid pt-5">
+    <div class="col-sm-8">
+        <div class="contact-form">
+            <h2 class="title text-center" th:text="${action}">Add shipper</h2>
+            <div class="status alert alert-success" style="display: none"></div>
+            
+            <form class="form" method="post" th:object="${shipper}" th:action="@{/shipper/add}">
+                <div th:if="${#fields.hasErrors()}">
+                    <div class="alert alert-danger" role="alert">Please
+                        correct the problems below and resubmit.</div>
+                </div>
+
+                <div class="form-group">
+
+                    <input type="hidden" placeholder="" th:field="*{shipperId}">
+
+                    <input type="text" name="name" class="form-control" placeholder="shipper"
+                        th:field="*{companyName}">
+
+                    <input type="text" name="phone" class="form-control" placeholder="phone"
+                    th:field="*{phone}">
+
+                    <div th:if="${#fields.hasErrors('companyName')}">
+                        <div class="text-danger" th:errors="*{companyName}"></div>
+
+                    </div>
+
+                    <div class="form-group col-md-12">
+                        <input type="submit" name="submit" class="btn btn-primary pull-right" value="Submit">
+                        <input type="button" style="margin-right: 5px;" name="cancel"
+                            class="btn btn-primary pull-right" value="Back" onClick="window.history.back();">
+
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+</th:block> 
