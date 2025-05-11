@@ -32,4 +32,7 @@ public class Category extends AbstractEntity {
     @Nonnull
     @Column(name = "description")
     private String description;
+
+    @Column(name="picture", nullable = true)
+    private String picture;
 }

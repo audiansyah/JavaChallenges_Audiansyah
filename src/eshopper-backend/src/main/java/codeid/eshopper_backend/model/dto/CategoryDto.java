@@ -3,10 +3,8 @@ package codeid.eshopper_backend.model.dto;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
 public class CategoryDto {
     private Long categoryId;
@@ -16,4 +14,6 @@ public class CategoryDto {
 
     @Size(max = 255, message = "Description must not exceed 255 characters")
     private String description;
+
+    private String picture;
 }

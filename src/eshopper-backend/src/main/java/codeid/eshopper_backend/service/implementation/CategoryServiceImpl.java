@@ -24,7 +24,17 @@ public class CategoryServiceImpl implements CategoryService {
         return new CategoryDto(
             category.getCategoryId(),
             category.getCategoryName(),
-            category.getDescription()
+            category.getDescription(),
+            category.getPicture()
+        );
+    }
+
+    public static Category mapToEntity(CategoryDto categoryDto){
+        return new Category(
+            categoryDto.getCategoryId(),
+            categoryDto.getCategoryName(),
+            categoryDto.getDescription(),
+            categoryDto.getPicture()
         );
     }
 
@@ -52,7 +62,7 @@ public class CategoryServiceImpl implements CategoryService {
     category.setCategoryName(entity.getCategoryName());
     category.setDescription(entity.getDescription());
 
-    return mapToDto(this.categoryRepository.save(category));   
+    return mapToDto(this.categoryRepository.save(category));
     }
 
     @Override
@@ -65,6 +75,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     category.setCategoryName(entity.getCategoryName());
     category.setDescription(entity.getDescription());
+    category.setPicture(entity.getPicture());
     
     this.categoryRepository.save(category);
     return mapToDto(category);
