@@ -14,8 +14,7 @@ import lombok.RequiredArgsConstructor;
 
 @Data
 @NoArgsConstructor //empty constructor
-@AllArgsConstructor //semua attribute departmentid & departmentName masuk ke constructor
-@RequiredArgsConstructor // hanya attribute yg diberi annotatsi @NonNull atau private final
+@AllArgsConstructor //semua attribute departmentid & departmentName masuk ke constructor // hanya attribute yg diberi annotatsi @NonNull atau private final
 @Entity
 @Table(name="shippers",schema = "oe")
 public class Shippers extends AbstractEntity {
@@ -25,11 +24,9 @@ public class Shippers extends AbstractEntity {
     @Column(name = "shipper_id")
     private Long shipperId;
 
-    @Nonnull
     @Column(name = "company_name")
     private String companyName;
 
-    @Nonnull
     @Column(name = "phone")
     private String phone;
 }

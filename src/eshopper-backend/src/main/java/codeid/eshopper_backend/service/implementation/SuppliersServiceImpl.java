@@ -27,6 +27,13 @@ public class SuppliersServiceImpl implements SuppliersService {
         );
     }
 
+    public static Suppliers mapToEntity(SuppliersDto suppliersDto){
+        return new Suppliers(
+            suppliersDto.getSupplierId(),
+            suppliersDto.getCompanyName()
+            );
+            }
+
     @Override
     public List<SuppliersDto> findAll() {
         log.debug("request fetching data categories");

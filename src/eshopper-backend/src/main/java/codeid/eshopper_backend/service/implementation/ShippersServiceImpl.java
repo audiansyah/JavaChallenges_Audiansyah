@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import codeid.eshopper_backend.model.dto.ShippersDto;
 import codeid.eshopper_backend.repository.ShippersRepository;
 import codeid.eshopper_backend.service.ShippersService;
-import codeid.eshopper_backend.model.entity.Category;
 import codeid.eshopper_backend.model.entity.Shippers;
 
 import jakarta.persistence.EntityNotFoundException;

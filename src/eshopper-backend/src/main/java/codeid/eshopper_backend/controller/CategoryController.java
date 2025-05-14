@@ -69,7 +69,7 @@ public class CategoryController extends BaseMultipartController<CategoryDto, Lon
             dto.setPicture(fileName);
             var categoryDto= categoryService.save(dto);
 
-            ApiResponse<CategoryDto> response = new ApiResponse<CategoryDto>(EnumStatus.Success.toString(), "Category created", categoryDto);
+            ApiResponse<CategoryDto> response = new ApiResponse<CategoryDto>(EnumStatus.Success, "Category created", categoryDto);
 
             return ResponseEntity.ok(response);
 
