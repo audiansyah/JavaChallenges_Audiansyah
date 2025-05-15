@@ -15,7 +15,7 @@ public class ProductImageDto {
 
     private String fileName;
 
-    private Double fileSize;
+    private Long fileSize;
 
     @Size(max=15,message = "Lenght maximal 15")
     private String fileType;

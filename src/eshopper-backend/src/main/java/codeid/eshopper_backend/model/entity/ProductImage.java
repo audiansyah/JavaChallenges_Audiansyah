@@ -29,7 +29,7 @@ public class ProductImage extends AbstractEntity{
     private String fileName;
 
     @Column(name="file_size")
-    private Double fileSize;
+    private Long fileSize;
 
     @Column(name="file_type")
     private String fileType;

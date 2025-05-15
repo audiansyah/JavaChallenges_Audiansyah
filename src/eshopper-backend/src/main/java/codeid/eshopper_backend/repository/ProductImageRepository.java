@@ -18,5 +18,4 @@ public interface ProductImageRepository extends JpaRepository<ProductImage,Long>
     //nativesql
     @Query(value="SELECT * FROM oe.product_images d where d.product_id=:id",nativeQuery = true)
     List<ProductImage> findProductImageByProductIdSql(@Param("id") Long id);
-
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -152,8 +153,7 @@ public class ProductsController extends BaseMultipartController<ProductsDto, Lon
 )
 public ResponseEntity<?> createMultipartBulk(
         @PathVariable Long id,
-        @RequestPart(value = "files", required = false) MultipartFile[] files,
-        @RequestParam(value = "description", required = false) String description
+        @RequestPart(value = "files", required = false) MultipartFile[] files
 ) {
     if (files == null || files.length == 0) {
         return ResponseEntity.badRequest().body("Please upload product images");
@@ -167,6 +167,9 @@ public ResponseEntity<?> createMultipartBulk(
 
             ProductImageDto imageDto = new ProductImageDto();
             imageDto.setFileName(filename);
+            imageDto.setFileSize(file.getSize());
+            imageDto.setFileType(file.getContentType());
+            imageDto.setTextUri("http://localhost:8090/product/view/" + filename);
             productImageDtos.add(imageDto);
         }
 
