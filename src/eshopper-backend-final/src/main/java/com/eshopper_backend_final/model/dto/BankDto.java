@@ -1,0 +1,12 @@
+package com.eshopper_backend_final.model.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class BankDto {
+    private String bankCode;
+}
