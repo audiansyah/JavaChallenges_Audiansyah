@@ -27,7 +27,7 @@ public class CartItemsController {
     }
 
     // Tambahkan item ke cart
-    @PostMapping("/{cartId}")
+    @PostMapping("/add/")
     public ResponseEntity<CartItemsDto> create(@RequestBody @Valid CartItemsDto dto) {
         return ResponseEntity.ok(cartItemsService.save(dto));
     }

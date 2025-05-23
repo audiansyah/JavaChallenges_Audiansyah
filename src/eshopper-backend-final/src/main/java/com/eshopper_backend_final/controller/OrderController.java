@@ -3,6 +3,7 @@ package com.eshopper_backend_final.controller;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -43,6 +44,7 @@ public class OrderController extends BaseCrudController<OrdersDto, Long>{
     }
 
     @Override
+    @PostMapping("/checkout/")
     public ResponseEntity<OrdersDto> create(@Valid OrdersDto entity) {
         return super.create(entity);
     }

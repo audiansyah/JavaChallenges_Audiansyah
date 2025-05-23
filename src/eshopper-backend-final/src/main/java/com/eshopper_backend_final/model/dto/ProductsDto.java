@@ -20,7 +20,7 @@ public class ProductsDto {
 
     private BigDecimal unitPrice;
 
-    private int unitsInStock;
+    private Long unitsInStock;
 
     private String picture;
 }

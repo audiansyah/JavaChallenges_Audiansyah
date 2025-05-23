@@ -2,6 +2,7 @@ package com.eshopper_backend_final.model.entity;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
@@ -11,6 +12,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -47,6 +49,10 @@ public class Orders extends AbstractEntity {
     private Users users;
 
     @ManyToOne
+    @JoinColumn(name="product_id")
+    private Products products;
+
+    @ManyToOne
     @JoinColumn(name = "employee_id")
     private Employee employee;
 
@@ -59,6 +65,7 @@ public class Orders extends AbstractEntity {
     private Bank bank;
 
     @OneToMany(mappedBy = "orders", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<OrderDetail> orderDetail;
+    private List<OrderDetail> orderDetail = new ArrayList<>();
+
 }
 

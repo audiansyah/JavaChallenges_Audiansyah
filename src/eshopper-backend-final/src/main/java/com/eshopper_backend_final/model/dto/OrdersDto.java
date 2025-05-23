@@ -24,6 +24,8 @@ public class OrdersDto {
     private String refNo;
     private BigDecimal totalDiscount;
     private BigDecimal totalAmount;
-    private List<OrderDetailDto> orderDetailDtos;
+    private Long productId;
+    private List<OrderDetailDto> orderDetails;
+    private List<Long> productIds;
 }
 

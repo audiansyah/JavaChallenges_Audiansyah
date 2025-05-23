@@ -42,7 +42,7 @@ public class Products extends AbstractEntity {
     private BigDecimal unitPrice;
 
     @Column (name = "units_in_stock")
-    private int unitsInStock;
+    private Long unitsInStock;
 
     @Column(name="picture",nullable = true)
     private String picture;
