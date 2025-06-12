@@ -6,29 +6,28 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.codeid.axaTest.model.dto.UserDto;
+import com.codeid.axaTest.model.dto.RoleDto;
 import com.codeid.axaTest.service.BaseCrudService;
-import com.codeid.axaTest.service.UserService;
+import com.codeid.axaTest.service.RoleService;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-
 @RestController
 @Slf4j
-@RequestMapping("/users")
+@RequestMapping("/roles")
 @RequiredArgsConstructor
-public class UserController extends BaseCrudController<UserDto, Long> {
-    private final UserService userService;
+public class RoleController extends BaseCrudController<RoleDto, Long> {
+    private final RoleService roleService;
 
     @Override
-    protected BaseCrudService<UserDto, Long> getService(){
-        return userService;
+    protected BaseCrudService<RoleDto, Long> getService(){
+        return roleService;
     }
 
     @Override
-    public ResponseEntity<List<UserDto>> getAll() {
+    public ResponseEntity<List<RoleDto>> getAll() {
         return super.getAll();
     }
 
@@ -38,19 +37,18 @@ public class UserController extends BaseCrudController<UserDto, Long> {
     }
 
     @Override
-    public ResponseEntity<UserDto> getById(Long id) {
+    public ResponseEntity<RoleDto> getById(Long id) {
         return super.getById(id);
     }
 
     @Override
-    public ResponseEntity<UserDto> update(Long id, @Valid UserDto entity) {
+    public ResponseEntity<RoleDto> update(Long id, @Valid RoleDto entity) {
         return super.update(id, entity);
     }
 
     @Override
-    public ResponseEntity<UserDto> create(@Valid UserDto entity) {
+    public ResponseEntity<RoleDto> create(@Valid RoleDto entity) {
         return super.create(entity);
     }
 }
-
 

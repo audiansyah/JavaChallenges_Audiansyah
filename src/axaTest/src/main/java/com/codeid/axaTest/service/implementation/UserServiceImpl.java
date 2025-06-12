@@ -1,5 +1,7 @@
 package com.codeid.axaTest.service.implementation;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.codeid.axaTest.model.dto.UserDto;
@@ -14,54 +16,64 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
-
     private final UserRepository userRepo;
     private final RoleRepository roleRepo;
 
     @Override
-    public UserDto create(UserDto dto) {
+    public List<UserDto> findAll() {
+        return userRepo.findAll().stream()
+                .map(u -> new UserDto(
+                        u.getUserId(),
+                        u.getUsername(),
+                        u.getPassword(),
+                        u.getRole() != null ? u.getRole().getRoleId() : null
+                ))
+                .toList();
+    }
+
+    @Override
+    public UserDto findById(Long id) {
+        User user = userRepo.findById(id)
+                .orElseThrow(() -> new RuntimeException("User with ID " + id + " not found"));
+        return new UserDto(user.getUserId(), user.getUsername(), user.getPassword(),
+                user.getRole() != null ? user.getRole().getRoleId() : null);
+    }
+
+    @Override
+    public UserDto save(UserDto dto) {
+        Role role = roleRepo.findById(dto.roleId())
+                .orElseThrow(() -> new RuntimeException("Role with ID " + dto.roleId() + " not found"));
+
         User user = new User();
         user.setUsername(dto.username());
         user.setPassword(dto.password());
-        if (dto.roleId() != null) {
-            Role role = roleRepo.findById(dto.roleId())
-                    .orElseThrow(() -> new RuntimeException("Role not found"));
-            user.setRole(role);
-        }
+        user.setRole(role);
         user = userRepo.save(user);
-        return new UserDto(user.getUserId(), user.getUsername(), user.getPassword(),
-                user.getRole() != null ? user.getRole().getRoleId() : null);
+
+        return new UserDto(user.getUserId(), user.getUsername(), user.getPassword(), user.getRole().getRoleId());
     }
 
     @Override
-    public UserDto update(Long userId, UserDto dto) {
-        User user = userRepo.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
+    public UserDto update(Long id, UserDto dto) {
+        User user = userRepo.findById(id)
+                .orElseThrow(() -> new RuntimeException("User with ID " + id + " not found"));
+
+        Role role = roleRepo.findById(dto.roleId())
+                .orElseThrow(() -> new RuntimeException("Role with ID " + dto.roleId() + " not found"));
+
         user.setUsername(dto.username());
         user.setPassword(dto.password());
-        if (dto.roleId() != null) {
-            Role role = roleRepo.findById(dto.roleId())
-                    .orElseThrow(() -> new RuntimeException("Role not found"));
-            user.setRole(role);
-        } else {
-            user.setRole(null);
-        }
-        user = userRepo.save(user);
-        return new UserDto(user.getUserId(), user.getUsername(), user.getPassword(),
-                user.getRole() != null ? user.getRole().getRoleId() : null);
-    }
-
-    @Override
-    public void delete(Long userId) {
-        userRepo.deleteById(userId);
-    }
-
-    @Override
-    public UserDto assignRole(Long userId, Long roleId) {
-        User user = userRepo.findById(userId).orElseThrow();
-        Role role = roleRepo.findById(roleId).orElseThrow();
         user.setRole(role);
         userRepo.save(user);
-        return new UserDto(user.getUserId(), user.getUsername(), user.getPassword(), role.getRoleId());
+
+        return new UserDto(user.getUserId(), user.getUsername(), user.getPassword(), user.getRole().getRoleId());
+    }
+
+    @Override
+    public void delete(Long id) {
+        if (!userRepo.existsById(id)) {
+            throw new RuntimeException("User with ID " + id + " not found");
+        }
+        userRepo.deleteById(id);
     }
 }
-
